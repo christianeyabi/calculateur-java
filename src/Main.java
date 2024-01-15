@@ -1,5 +1,3 @@
-import java.io.*;
-import java.lang.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -19,12 +17,6 @@ public class Main {
         // Création d'un objet scanner
         Scanner scanner = new Scanner(System.in);
 
-        // Création d'un objet inputStreamReader
-        InputStreamReader lecteur = new InputStreamReader(System.in);
-
-        // Création d'un objet bufferedReader lié à l'objet inputStreamReader
-        BufferedReader entree = new BufferedReader(lecteur);
-
         //Demande à l'utilisateur de saisir le premier nombre au clavier
         System.out.println("Entrez le premier nombre :");
 
@@ -36,7 +28,7 @@ public class Main {
         {
            System.out.println("Mauvais type de données !");
            err.printStackTrace(); // this will print the stack trace of the exception
-           return; // Fin prématurée du programme si une erreur de saise se produit
+           System.exit(0); // Fin prématurée du programme si une erreur de saise se produit
         } finally {
             scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
@@ -51,7 +43,7 @@ public class Main {
         } catch (InputMismatchException err) {
             System.out.println("Mauvais type de données !");
             err.printStackTrace(); // this will print the stack trace of the exception
-            return; // Fin prématurée du programme si une erreur de saise se produit
+            System.exit(0); // Fin prématurée du programme si une erreur de saise se produit
         } finally {
             scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
@@ -60,7 +52,7 @@ public class Main {
         System.out.println("Choisissez l'opération (+, _, *, / : ");
 
         //Récupération du choix de l'opération au clavier par l'utilisateur
-        operation = entree.readLine();
+        operation = scanner.nextLine();
 
         //Utilisation de la structure switch-case pour exécuter l'opération correspondant au choix de l'utilisateur
         switch (operation)
@@ -84,12 +76,15 @@ public class Main {
                 try
                 {
                     //Opération correspondante
+                    if(nombre2 == 0)
+                    {
+                        throw new ArithmeticException("Impossible de diviser par zéro !");
+                    }
                     resultat = nombre1 / nombre2;
                     System.out.println("Résultat : " + resultat);
                 } catch (ArithmeticException err) {
-                    System.out.println("Impossible de diviser par zéro !");
                     err.printStackTrace(); // this will print the stack trace of the exception
-                    return; // Fin prématurée du programme si une erreur de saisie se produit
+                    System.exit(0); // Fin prématurée du programme si une erreur de saisie se produit
                 } finally {
                     scanner.nextLine(); // Nettoyage du buffer d'entrée
                 }
@@ -99,5 +94,8 @@ public class Main {
                 System.out.println("Mauvaise opération");
                 break;
         }
+
+        //Fermer le scanner
+        scanner.close();
     }
 }
