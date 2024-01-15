@@ -1,5 +1,6 @@
 import java.io.*;
 import java.lang.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -31,10 +32,13 @@ public class Main {
         {
             //Récupération du nombre saisi au clavier par l'utilisateur
             nombre1 = scanner.nextDouble();
-        }
-        catch (NumberFormatException err)
+        } catch (InputMismatchException err)
         {
            System.out.println("Mauvais type de données !");
+           err.printStackTrace(); // this will print the stack trace of the exception
+           return; // Fin prématurée du programme si une erreur de saise se produit
+        } finally {
+            scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
 
         //Demande à l'utilisateur de saisir le deuxième nombre au clavier
@@ -44,11 +48,12 @@ public class Main {
         {
             //Récupération du nombre saisi au clavier par l'utilisateur
             nombre2 = scanner.nextDouble();
-        }
-        catch (NumberFormatException err)
-        {
+        } catch (InputMismatchException err) {
             System.out.println("Mauvais type de données !");
             err.printStackTrace(); // this will print the stack trace of the exception
+            return; // Fin prématurée du programme si une erreur de saise se produit
+        } finally {
+            scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
 
         //Demande à l'utilisateur de choisir l'opération
@@ -81,11 +86,14 @@ public class Main {
                     //Opération correspondante
                     resultat = nombre1 / nombre2;
                     System.out.println("Résultat : " + resultat);
-                }
-                catch (ArithmeticException err)
-                {
+                } catch (ArithmeticException err) {
                     System.out.println("Impossible de diviser par zéro !");
+                    err.printStackTrace(); // this will print the stack trace of the exception
+                    return; // Fin prématurée du programme si une erreur de saisie se produit
+                } finally {
+                    scanner.nextLine(); // Nettoyage du buffer d'entrée
                 }
+
                 break;
             default:
                 System.out.println("Mauvaise opération");
