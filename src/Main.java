@@ -91,7 +91,7 @@ public class Main {
                     err.printStackTrace(); // this will print the stack trace of the exception
                     return; // Fin prématurée du programme si une erreur de saisie se produit
                 } finally {
-                    scanner.nextLine(); // Nettoyage du buffer d'entré
+                    scanner.nextLine(); // Nettoyage du buffer d'entrée
                 }
 
                 break;
