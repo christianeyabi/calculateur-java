@@ -28,7 +28,7 @@ public class Main {
         {
            System.out.println("Mauvais type de données !");
            err.printStackTrace(); // this will print the stack trace of the exception
-           System.exit(0); // Fin prématurée du programme si une erreur de saise se produit
+           System.exit(0); // Fin prématurée du programme si une erreur de saisie se produit
         } finally {
             scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
@@ -43,7 +43,7 @@ public class Main {
         } catch (InputMismatchException err) {
             System.out.println("Mauvais type de données !");
             err.printStackTrace(); // this will print the stack trace of the exception
-            System.exit(0); // Fin prématurée du programme si une erreur de saise se produit
+            System.exit(0); // Fin prématurée du programme si une erreur de saisie se produit
         } finally {
             scanner.nextLine(); // Nettoyage du buffer d'entrée
         }
